@@ -1,8 +1,43 @@
-import logo from './logo.svg';
-import './App.css';
+import SearchContext from './components/contexts/SearchContext';
+import './layout.sass';
+import './base.sass';
+import MainContent from './components/Layout/MainContent';
+import useFetch from './components/customHooks/useFetch';
+import { useEffect, useState, useMemo } from 'react';
 
 function App() {
-  return <div className="App">test1</div>;
+  const [tempSearchWord, setTempSearchWord] = useState(''); // input render value
+  const [realSearchWord, setRealSearchWord] = useState(''); // call api value
+  const [data] = useFetch(
+    `/api/v1/search?query=${realSearchWord}&hitsPerPage=30`
+  );
+
+  const handleSearch = (e) => {
+    if (window.delay) {
+      clearTimeout(window.delay);
+    }
+    const value = e.target.value;
+    setTempSearchWord(value);
+
+    // 減少call api次數
+    window.delay = setTimeout(() => {
+      setRealSearchWord(value);
+    }, 500);
+  };
+
+  return (
+    <SearchContext.Provider
+      value={{
+        data: data,
+        handleSearch: handleSearch,
+        tempSearchWord: tempSearchWord,
+      }}
+    >
+      <div className="layout">
+        <MainContent />
+      </div>
+    </SearchContext.Provider>
+  );
 }
 
 export default App;
