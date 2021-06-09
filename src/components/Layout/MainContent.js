@@ -25,7 +25,7 @@ const MainContent = () => {
   // 分割資料
   useEffect(() => {
     if (!data) return;
-    const partData = data.hits.slice(0, limit);
+    const partData = data?.hits?.slice(0, limit);
     setRenderData(partData);
     setTotal(data.nbHits);
   }, [data, limit]);
