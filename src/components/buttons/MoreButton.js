@@ -1,7 +1,7 @@
 import React from 'react';
 
 const MoreButton = ({ handleReadMore }) => {
-  return <button onClick={handleReadMore}>read more...</button>;
+  return <button onClick={handleReadMore}>more</button>;
 };
 
 export default MoreButton;

@@ -3,7 +3,7 @@ import './layout.sass';
 import './base.sass';
 import MainContent from './components/Layout/MainContent';
 import useFetch from './components/customHooks/useFetch';
-import { useEffect, useState, useMemo } from 'react';
+import { useState } from 'react';
 
 function App() {
   const [tempSearchWord, setTempSearchWord] = useState(''); // input render value

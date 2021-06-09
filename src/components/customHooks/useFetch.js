@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { fetchData } from '../../lib/helper';
 const useFetch = (endPoint) => {
   const [resData, setResData] = useState();
